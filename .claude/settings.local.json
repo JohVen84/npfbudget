@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(npm --version)",
+      "Bash(curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/claude-1000/nodesource_setup.sh 2>&1 && echo \"downloaded OK\" && head -5 /tmp/claude-1000/nodesource_setup.sh)",
+      "Read(//tmp/claude-1000/**)",
+      "Bash(sudo -n true)",
+      "Bash(npx --version)"
+    ]
+  }
+}
