@@ -1,8 +1,7 @@
 import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import * as schema from "./schema";
-
-const sqlitePath = process.env.SQLITE_PATH ?? "./data/npf-budget.db";
+import { sqlitePath } from "./path";
 
 declare global {
   // eslint-disable-next-line no-var

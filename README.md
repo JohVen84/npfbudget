@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NPF Budget App
 
-## Getting Started
+Hushållsapp för att dela upp räkningar. Byggd med Next.js, SQLite (better-sqlite3) och Drizzle.
 
-First, run the development server:
+## Krav
+
+- Node.js 22 (eller senare) och npm
+- Byggverktyg för native-moduler om better-sqlite3 saknar färdig binär för din plattform
+  (Linux: `build-essential` och `python3`; macOS: Xcode Command Line Tools; Windows: Visual Studio Build Tools)
+
+## Kom igång
+
+```bash
+npm ci
+cp .env.example .env   # valfritt – standardvärdena fungerar utan .env
+```
+
+### Utveckling
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öppna http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Produktion
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+Eller allt i ett steg: `scripts/run.sh`.
 
-To learn more about Next.js, take a look at the following resources:
+Servern lyssnar på port 3000 på alla nätverksgränssnitt.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Databas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Databasen är en SQLite-fil, som standard `data/npf-budget.db`. Sökvägen kan ändras med
+`SQLITE_PATH` i `.env`. Mappen skapas automatiskt, och migreringar körs automatiskt före
+`npm run dev` och `npm run build` (manuellt: `npm run db:migrate`).
 
-## Deploy on Vercel
+Mappen `data/` ingår inte i git. Säkerhetskopiera den om du vill behålla datan.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Övrigt
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm test` – kör enhetstester (Vitest)
+- `npm run lint` – kör ESLint
+- `npm run db:generate` – skapar en ny migrering efter ändringar i `src/server/db/schema.ts`

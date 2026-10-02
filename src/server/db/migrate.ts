@@ -1,8 +1,7 @@
 import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
-
-const sqlitePath = process.env.SQLITE_PATH ?? "./data/npf-budget.db";
+import { sqlitePath } from "./path";
 
 const sqlite = new Database(sqlitePath);
 const db = drizzle(sqlite);
